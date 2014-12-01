@@ -1,0 +1,54 @@
+# autoColorGradation CMake config file
+#
+# This file sets the following variables:
+# autoColorGradation_FOUND - Always TRUE.
+# autoColorGradation_INCLUDE_DIRS - Directories containing the autoColorGradation include files.
+# autoColorGradation_IDL_DIRS - Directories containing the autoColorGradation IDL files.
+# autoColorGradation_LIBRARIES - Libraries needed to use autoColorGradation.
+# autoColorGradation_DEFINITIONS - Compiler flags for autoColorGradation.
+# autoColorGradation_VERSION - The version of autoColorGradation found.
+# autoColorGradation_VERSION_MAJOR - The major version of autoColorGradation found.
+# autoColorGradation_VERSION_MINOR - The minor version of autoColorGradation found.
+# autoColorGradation_VERSION_REVISION - The revision version of autoColorGradation found.
+# autoColorGradation_VERSION_CANDIDATE - The candidate version of autoColorGradation found.
+
+message(STATUS "Found autoColorGradation-@PROJECT_VERSION@")
+set(autoColorGradation_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(autoColorGradation_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(autoColorGradation_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(autoColorGradation_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(autoColorGradation_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(autoColorGradation_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(autoColorGradation_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(autoColorGradation_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(autoColorGradation_VERSION @PROJECT_VERSION@)
+set(autoColorGradation_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(autoColorGradation_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(autoColorGradation_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(autoColorGradation_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
